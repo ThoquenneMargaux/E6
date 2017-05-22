@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="Lignefraisforfait" table="LigneFraisForfait">
+    <indexes>
+      <index name="idFicheFrais" columns="idFicheFrais"/>
+      <index name="idFraisForfait" columns="idFraisForfait"/>
+    </indexes>
+    <id name="idlignefraisforfait" type="integer" column="idLigneFraisForfait">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="quantite" type="integer" column="quantite" nullable="true"/>
+    <many-to-one field="idfraisforfait" target-entity="Fraisforfait">
+      <join-columns>
+        <join-column name="idFraisForfait" referenced-column-name="idFraisForfait"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="idfichefrais" target-entity="Fichefrais">
+      <join-columns>
+        <join-column name="idFicheFrais" referenced-column-name="idFicheFrais"/>
+      </join-columns>
+    </many-to-one>
+  </entity>
+</doctrine-mapping>

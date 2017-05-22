@@ -1,0 +1,227 @@
+{% extends "mttlgsbBundle:Default:base_Comptable.html.twig" %}
+
+{% block head %}
+    {{ parent() }}
+    {% block titre %} <title>GSB - Page Renseigner fiche de frais</title> {% endblock %}
+{% endblock %}
+
+    {% block entete %}
+        {{ parent() }}
+    {% endblock %}
+    
+    {% block body %}
+     <section id="team">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12 col-sm-12">
+                        <div class="section-title">
+                            <strong>Suivis des fiche de frais </strong>
+                                <hr>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-24 col-sm-12 wow fadeIn" data-wow-delay="0.9s">
+                        <div class="team-wrapper">
+                          
+                              
+                              
+                            <input type="button" value="Retour" onclick="history.go(-1)">
+                            
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </section>
+        <table class='table table-bordered'>
+            <thead >
+               <tr>
+                   
+                    <td class="info">
+                       Visiteur
+                    </td>
+                    <td class="info">
+                        Date de Modification
+                    </td>
+                    <td class="info">
+                        Date de création
+                    </td>
+                    <td class="info">
+                         nombre de justificatifs
+                    </td>
+                   
+                    <td class="info">
+                        
+                    </td>
+                   
+               </tr>
+            </thead>
+            <tbody>
+               
+                <tr>
+                    
+                     <td>
+                          {{fiche.idvisiteur.nom}} {{fiche.idvisiteur.prenom}}      
+                     </td>
+                            
+                     <td>
+                         {{fiche.mois|date('d-m-Y') }}
+                     </td>
+                     <td>
+                        {{fiche.dateModif|date('d-m-Y') }}
+                     </td>
+                     <td>
+                        {{fiche.nbjustificatifs}}
+                     </td>
+                     
+                      <td>
+                        <a href="{{ path('mttlgsb_cValiderFiche',{"idfichefrais":fiche.idfichefrais})}}">Validation de la fiche</a> 
+                     </td>
+                
+                </tr>
+               
+            </tbody>
+           
+            </table>
+                     
+                
+                   <center>Frais forfaitisé :</center>
+                    <br/>
+            <table class='table  table-bordered'>
+                <thead>
+                    </tr>
+                        <td class="info">
+                           Quantité
+                        </td>
+                        <td class="info">
+                           Montant
+                        </td>
+                        <td class="info">
+                          Libelle
+                        </td>
+                     
+                    </tr>
+                </thead>
+                <tbody>
+                    
+                    
+                     {%for ligne in lignes %}
+                          {%if ligne.idfraisforfait.idfraisforfait == 'KM' %}
+                              {% for type in types%}
+                                  {%if type.idfraisforfait =='KM'%}
+                                  <tr>
+                                     <td>
+                                         {{ligne.quantite}}
+                                     </td>
+                                     <td>
+                                         {{ligne.quantite * type.montant}}
+                                     </td>
+                                     <td>
+                                        {{ligne.idfraisforfait.libelle}}
+                                     </td>
+                                  </tr>
+                                  {%endif%}
+                            {%endfor%}
+                          {%endif%}
+                     {%endfor%}
+                     
+                      {%for ligne in lignes %}
+                          {%if ligne.idfraisforfait.idfraisforfait == 'REP' %}
+                              {% for type in types%}
+                                  {%if type.idfraisforfait =='REP'%}
+                                      <tr>
+                                     <td>
+                                         {{ligne.quantite}}
+                                     </td>
+                                     <td>
+                                         {{ligne.quantite * type.montant}}
+                                     </td>
+                                     <td>
+                                         {{ligne.idfraisforfait.libelle}}
+                                     </td>
+                                      </tr>
+                                  {%endif%}
+                            {%endfor%}
+                          {%endif%}
+                     {%endfor%}
+                     {%for ligne in lignes %}
+                          {%if ligne.idfraisforfait.idfraisforfait == 'NUI' %}
+                              {% for type in types%}
+                                  {%if type.idfraisforfait =='NUI'%}
+                                      <tr>
+                                     <td>
+                                         {{ligne.quantite}}
+                                     </td>
+                                     <td>
+                                         {{ligne.quantite * type.montant}}
+                                     </td>
+                                     <td>
+                                         {{ligne.idfraisforfait.libelle}}
+                                     </td>
+                                      </tr>
+                                  {%endif%}
+                            {%endfor%}
+                          {%endif%}
+                     {%endfor%}
+                      {%for ligne in lignes %}
+                          {%if ligne.idfraisforfait.idfraisforfait == 'ETP' %}
+                              {% for type in types%}
+                                  {%if type.idfraisforfait =='ETP'%}
+                                      <tr>
+                                     <td>
+                                         {{ligne.quantite}}
+                                     </td>
+                                     <td>
+                                         {{ligne.quantite * type.montant}}
+                                     </td>
+                                      <td>
+                                         {{ligne.idfraisforfait.libelle}}
+                                     </td>
+                                      </tr>
+                                  {%endif%}
+                            {%endfor%}
+                          {%endif%}
+                     {%endfor%}
+                </tbody> 
+        </table>
+                     <br/>
+        <center>Frais non forfaitisé :</center>
+        <br/>
+        <table class='table  table-bordered '>
+                <thead>
+                    </tr>
+                        <td class="info">
+                            Libelle
+                        </td>
+                        <td class="info">
+                           Montant 
+                       </td>
+                       <td class="info">
+                           Date de la depense 
+                        </td>
+                    </tr>
+                </thead>
+                 <tbody>
+                      {%for ligne in hf%}
+                     <tr>
+                            <td>
+                                 {{ligne.libelle}}
+                            </td>
+                            <td>
+                                {{ligne.montant}}
+                            </td>
+                            <td>
+                                 {{ligne.dateDepense |date('d-m-Y') }}
+                            </td>
+                     </tr>
+                     {%endfor%}
+                 </tbody>
+        </table>
+        
+            
+        
+    {% endblock %}
+    
+    {% block footer %}
+        {{ parent() }}
+    {% endblock %}

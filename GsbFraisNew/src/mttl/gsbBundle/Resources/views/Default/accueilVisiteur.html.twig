@@ -1,0 +1,26 @@
+{% extends "mttlgsbBundle:Default:base_Visiteur.html.twig" %}
+{% block head %}
+    {{ parent() }}
+{% endblock %}
+
+    {% block entete %}
+        {{ parent() }}
+    {% endblock %}
+    {% block body %}
+        <section id="about" class="paralla-section">
+                <div class="container">
+                        <div class="row">
+
+                                <div class="col-md-20 col-sm-12">
+                                        <h3 class="wow fadeInDown" data-wow-delay="0.2s">Bienvenue</h3>
+                                        <h1 class="wow fadeInDown">{{ app.session.get('nom')}} {{ app.session.get('prenom')}}</h1>
+
+                                </div>
+
+                        </div>
+                </div>	
+        </section>
+                                
+                 
+        
+    {% endblock %}

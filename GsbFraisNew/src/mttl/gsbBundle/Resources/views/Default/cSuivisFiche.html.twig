@@ -1,0 +1,74 @@
+{% extends "mttlgsbBundle:Default:base_Comptable.html.twig" %}
+
+{% block head %}
+    {{ parent() }}
+    {% block titre %} <title>GSB - Page Renseigner fiche de frais</title> {% endblock %}
+{% endblock %}
+
+    {% block entete %}
+        {{ parent() }}
+    {% endblock %}
+    
+    {% block body %}
+     <section id="team">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12 col-sm-12">
+                        <div class="section-title">
+                            <strong>Suivis des fiche de frais </strong>
+                                <hr>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-24 col-sm-12 wow fadeIn" data-wow-delay="0.9s">
+                        <div class="team-wrapper">
+                          
+                              
+                              
+                            <input type="button" value="Retour" onclick="history.go(-1)">
+                            
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </section>
+         <table class='table table-bordered'>
+            <thead >
+               <tr>
+                    <td class="info">
+                      Visiteur
+                    </td>
+                    <td class="info">
+                      Fiche
+                    </td>
+                    <td class="info">
+                        
+                    </td>
+                    
+               </tr>
+            </thead>
+            <tbody>
+                {%for fiche in fiches%}
+                <tr>
+                   
+                     <td>
+                          {{fiche.idvisiteur.nom}} {{fiche.idvisiteur.prenom}}      
+                     </td>
+                            
+                     <td>
+                         {{fiche.idfichefrais}}
+                     </td>
+                     <td>
+                         <a href="{{ path('mttlgsb_cDescriptifFiche',{"idfichefrais":fiche.idfichefrais})}}">Voir</a> 
+                     </td>
+                  
+                </tr>
+                  {%endfor%}
+            </tbody>
+            </table>
+    {% endblock %}
+    
+    {% block footer %}
+        {{ parent() }}
+    {% endblock %}

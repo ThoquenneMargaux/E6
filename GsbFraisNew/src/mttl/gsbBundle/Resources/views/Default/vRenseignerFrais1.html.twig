@@ -1,0 +1,99 @@
+{% extends "mttlgsbBundle:Default:base_Visiteur.html.twig" %}
+
+{% block head %}
+    {{ parent() }}
+    {% block titre %} <title>GSB - Page Renseigner fiche de frais</title> {% endblock %}
+{% endblock %}
+
+    {% block entete %}
+        {{ parent() }}
+    {% endblock %}
+    
+    {% block body %}
+     <section id="team">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12 col-sm-12">
+                        <div class="section-title">
+                            <strong>Renseigner Fiche</strong>
+                                <hr>
+                        </div>
+                    </div>
+                    <div class="col-md-24 col-sm-12 wow fadeIn" data-wow-delay="0.9s">
+                        <div class="team-wrapper">
+                            
+                            
+                            {{form_start(form)}}
+                            <table class="table-centrer">
+                                <tr>
+                                    <td>
+                                        <div class="erreur">
+                                           {{danger}} 
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        {{form_label(form.quantite,"Quantite: ")}}
+                                    </td>
+                                    <td>
+                                        {{form_widget(form.quantite)}}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        {{form_label(form.idfraisforfait,"Type de frais: ")}}
+                                    </td>
+                                    <td>
+                                        {{form_widget(form.idfraisforfait)}}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <input type="submit" value="Valider" />
+                                    </td>
+                                    <td>
+                                        <input type="button" value="Retour" onclick="history.go(-1)">
+                                    </td>
+                                </tr>
+                            </table>
+                            {{form_end(form)}}
+
+                            
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+       
+        <table class='table'>
+            <thead>
+                <tr>
+                    <td>
+                        Frais forfait
+                    </td>
+                    <td>
+                        Quantité
+                    </td>
+                </tr>
+            </thead>
+            {% for ligne in lignesfrais %}
+            <tbody>
+                <tr>
+                    <td>
+                        {{ ligne.idfraisforfait.libelle }}
+                    </td>
+                    <td>
+                        {{ ligne.quantite }}
+                    </td>
+                    
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% endblock %}
+    
+    {% block footer %}
+        {{ parent() }}
+    {% endblock %}

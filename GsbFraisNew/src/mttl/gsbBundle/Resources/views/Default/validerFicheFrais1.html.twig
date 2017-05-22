@@ -1,0 +1,66 @@
+
+{% extends "mttlgsbBundle:Default:base_Comptable.html.twig" %}
+
+{% block head %}
+    {{ parent() }}
+    {% block titre %} <title>GSB - Page Renseigner fiche de frais</title> {% endblock %}
+{% endblock %}
+
+    {% block entete %}
+        {{ parent() }}
+    {% endblock %}
+    
+    {% block body %}
+     <section id="team">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12 col-sm-12">
+                        <div class="section-title">
+                            <strong>Selection du visiteur et du mois</strong>
+                                <hr>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-24 col-sm-12 wow fadeIn" data-wow-delay="0.9s">
+                        <div class="team-wrapper">
+                            
+                            {{form_start(form)}}
+                                <table class="table-centrer">
+                                    {{danger}}
+                                    <tr>
+                                        <td>
+                                            {{form_label(form.mois,"Mois :")}}
+                                        </td>
+                                        <td>
+                                            {{form_widget(form.mois)}}
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            {{form_label(form.visiteurs,"Visiteur: ")}}
+                                        </td>
+                                        <td>
+                                            {{form_widget(form.visiteurs)}}
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            {{form_widget(form.valider)}}
+                                        </td>
+                                        <td>
+                                            <input type="button" value="Retour" onclick="history.go(-1)">
+                                        </td>
+                                    </tr>
+                                </table>
+                            {{form_end(form)}}
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </section>
+    {% endblock %}
+    
+    {% block footer %}
+        {{ parent() }}
+    {% endblock %}

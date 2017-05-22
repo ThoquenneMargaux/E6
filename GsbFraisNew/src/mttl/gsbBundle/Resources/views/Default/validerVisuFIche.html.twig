@@ -1,0 +1,107 @@
+
+{% extends "mttlgsbBundle:Default:base_Comptable.html.twig" %}
+
+{% block head %}
+    {{ parent() }}
+    {% block titre %} <title>GSB - Page Renseigner fiche de frais</title> {% endblock %}
+{% endblock %}
+
+    {% block entete %}
+        {{ parent() }}
+    {% endblock %}
+    
+    {% block body %}
+     <section id="team2">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12 col-sm-12">
+                        <div class="section-title">
+                                <hr>
+                        </div>
+                    </div>
+                    <div class="col-md-24 col-sm-12 wow fadeIn" data-wow-delay="0.9s">
+                        <div class="team-wrapper">
+                            
+                            <h2>Fiche de {{ ficheFrais.idvisiteur.nom }} {{ ficheFrais.idvisiteur.prenom }} du {{ ficheFrais.mois | date('m-y')}}</h2>
+
+                            
+                            <h3>les Frais Forfait</h3>
+                            <table class='table'>
+                                <thead>
+                                    <tr>
+                                        <td>
+                                            Frais forfait
+                                        </td>
+                                        <td>
+                                            Quantité
+                                        </td>
+                                    </tr>
+                                </thead>
+                                {% for forfait in forfaits %}
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            {{ forfait.idfraisforfait.libelle }}
+                                        </td>
+                                        <td>
+                                            {{ forfait.quantite }}
+                                        </td>
+
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                            
+                            <h3>les Frais Hors Forfait</h3>
+                            <table class='table'>
+                                <thead>
+                                    <tr>
+                                        <td>
+                                            Frais hors forfait
+                                        </td>
+                                        <td>
+                                            Montant
+                                        </td>
+                                        <td>
+                                            Date
+                                        </td>
+                                        <td>
+
+                                        </td>
+                                    </tr>
+                                </thead>
+            
+                                {% for unHorsForfait in horsForfait %}
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            {{ unHorsForfait.libelle }}
+                                        </td>
+                                        <td>
+                                            {{ unHorsForfait.montant }}
+                                        </td>
+                                        <td>
+                                            {{ unHorsForfait.datedepense | date('d-m-y')}}
+                                        </td>
+                                        <td>
+                                            <a href="{{ path('mttlgsb_refus',{"idlignefraishorsforfait":unHorsForfait.idlignefraishorsforfait,'mois':ficheFrais.mois | date('Y-m-d'),"idVisiteur":ficheFrais.idvisiteur.idVisiteur})}}">Refuser</a> 
+                                        </td>
+                                    </tr>
+
+                                    {% endfor %}
+
+
+                                </tbody>
+                            </table>
+                            <a href="{{ path('mttlgsb_validation',{"idFiche": ficheFrais.idfichefrais })}}">Valider</a>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </section>
+    {% endblock %}
+    
+    {% block footer %}
+        {{ parent() }}
+    {% endblock %}

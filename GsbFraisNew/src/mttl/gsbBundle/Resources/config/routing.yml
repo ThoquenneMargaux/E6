@@ -1,0 +1,67 @@
+mttlgsb_homepage:
+    path:     /Accueil
+    defaults: { _controller: mttlgsbBundle:Default:index }
+  
+mttlgsb_connexion:
+    path:     /Connexion
+    defaults: { _controller: mttlgsbBundle:Default:formExterne }
+
+mttlgsb_deconnexion:
+  path: /deconnexion
+  defaults: { _controller: mttlgsbBundle:Default:deconnexion }
+
+login:
+    path: /login
+    defaults: { _controller: AppBundle:Security:login}    
+        
+login_check:
+    path: /login_check
+ 
+mttlgsb_Vconsulter:
+   path:     /Vconsulter
+   defaults: { _controller: mttlgsbBundle:Default:Vconsulter }
+
+mttlgsb_AVisiteur:
+  path: /AVisiteur
+  defaults : { _controller: mttlgsbBundle:Default:AVisiteur }
+    
+mttlgsb_Vrenseigner:
+   path:     /Vrenseigner
+   defaults: { _controller: mttlgsbBundle:Default:Vrenseigner } 
+   
+mttlgsb_VrenseignerHF:
+   path:     /VrenseignerHF
+   defaults: { _controller: mttlgsbBundle:Default:VrenseignerHF } 
+   
+mttlgsb_supHF:
+    path:   /supHF/{idlignefraishorsforfait}
+    defaults: { _controller: mttlgsbBundle:Default:supHF}
+
+mttlgsb_suivisPFicheFrais:
+    path:   /cSuivis
+    defaults: { _controller: mttlgsbBundle:Default:cSuivis}
+
+mttlgsb_cDescriptifFiche:
+    path:   /cDescriptif{idfichefrais}
+    defaults: { _controller: mttlgsbBundle:Default:cdescriptif}
+
+mttlgsb_cValiderFiche:
+    path:   /cValiderFiche{idfichefrais}
+    defaults: { _controller: mttlgsbBundle:Default:cvaliderfiche}
+ 
+ 
+mttlgsb_validerFicheFrais:
+    path: /validerFicheFrais
+    defaults: { _controller: mttlgsbBundle:Default:validerFicheFrais }
+    
+mttlgsb_validerVisuFiche:
+    path: /validerVisuFiche
+    defaults: { _controller: mttlgsbBundle:Default:validerVisuFiche }
+    
+mttlgsb_refus:
+    path:   /refus/{idlignefraishorsforfait}/{mois}/{idVisiteur}
+    defaults: { _controller: mttlgsbBundle:Default:refus}
+    
+mttlgsb_validation:
+    path:   /validation/{idFiche}
+    defaults: { _controller: mttlgsbBundle:Default:valider}

@@ -1,0 +1,122 @@
+{% extends "mttlgsbBundle:Default:base_Visiteur.html.twig" %}
+
+{% block head %}
+    {{ parent() }}
+    {% block titre %} <title>GSB - Page Renseigner frais hors forfait</title> {% endblock %}
+{% endblock %}
+
+    {% block entete %}
+        {{ parent() }}
+    {% endblock %}
+    
+    {% block body %}
+     <section id="team">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12 col-sm-12">
+                        <div class="section-title">
+                            <strong>Renseigner Fiche</strong>
+                                <hr>
+                        </div>
+                    </div>
+                    <div class="col-md-24 col-sm-12 wow fadeIn" data-wow-delay="0.9s">
+                        <div class="team-wrapper">
+
+                            {{form_start(form)}}
+                            <table class="table-centrer">
+                                <tr>
+                                    <td>
+                                        <div class="erreur">
+                                           {{danger}} 
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        {{form_label(form.libelle,"Nom du frais: ")}}
+                                    </td>
+                                    <td>
+                                        {{form_widget(form.libelle)}}
+                                    </td>
+                                </tr>
+                                 <tr>
+                                    <td>
+                                        {{form_label(form.datedepense,"Date du frais: ")}}
+                                    </td>
+                                    <td>
+                                        {{form_widget(form.datedepense)}}
+                                    </td>
+                                </tr>
+                                 <tr>
+                                    <td>
+                                        {{form_label(form.montant,"Montant: ")}}
+                                    </td>
+                                    <td>
+                                        {{form_widget(form.montant)}}
+                                    </td>
+                                </tr>
+                                 <tr>
+                                    <td>
+                                        <input type="submit" value="Valider" />
+                                    </td>
+                                    <td>
+                                        <input type="button" value="Retour" onclick="history.go(-1)">
+                                    </td>
+                                </tr>
+                            </table>      
+                            {{form_end(form)}}
+
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+       
+        <table class='table'>
+            <thead>
+                <tr>
+                    <td>
+                        Frais hors forfait
+                    </td>
+                    <td>
+                        Montant
+                    </td>
+                    <td>
+                        Date
+                    </td>
+                    <td>
+                        
+                    </td>
+                </tr>
+            </thead>
+            
+            {% for ligne in lignesHF %}
+            <tbody>
+                <tr>
+                    <td>
+                        {{ ligne.libelle }}
+                    </td>
+                    <td>
+                        {{ ligne.montant }}
+                    </td>
+                    <td>
+                        {{ ligne.datedepense | date('d-m-y')}}
+                    </td>
+                    <td>
+                        
+                         <a href="{{ path('mttlgsb_supHF',{"idlignefraishorsforfait":ligne.idlignefraishorsforfait})}}">Supprimer</a>       
+                    </td>
+                </tr>
+            
+                {% endfor %}
+                
+                
+            </tbody>
+        </table>
+    {% endblock %}
+    
+    {% block footer %}
+        {{ parent() }}
+    {% endblock %}
